@@ -13,10 +13,12 @@ api_key = config['sms']['api_key']
 api_secret = config['sms']['api_secret']
 
 params = dict()
-params['type'] = 'sms'
-params['to'] = '01088605889'
+params['type'] = 'mms'
+params['to'] = '01086342373'
 params['from'] = config['sms']['sender_number']
-params['text'] = '테스트입니다'
+params['text'] = '마우스에 기름칠좀 해드려야겠어요'
+params['image'] = '/Users/kizmo04/Desktop/11142158_1389784811347226_911801625_n.jpg'
+# params['image'] = 'https://igcdn-photos-c-a.akamaihd.net/hphotos-ak-xpt1/t51.2885-15/11142158_1389784811347226_911801625_n.jpg'
 cool = Message(api_key, api_secret)
 
 try:
