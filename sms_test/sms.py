@@ -2,6 +2,7 @@ import json
 import os
 import sys
 
+from pathlib import Path
 from sdk.api.message import Message
 from sdk.exceptions import CoolsmsException
 
@@ -14,10 +15,10 @@ api_secret = config['sms']['api_secret']
 
 params = dict()
 params['type'] = 'mms'
-params['to'] = '01086342373'
+params['to'] = '01091410609'
 params['from'] = config['sms']['sender_number']
-params['text'] = '마우스에 기름칠좀 해드려야겠어요'
-params['image'] = '/Users/kizmo04/Desktop/11142158_1389784811347226_911801625_n.jpg'
+params['text'] = 'hello'
+params['image'] = '/Users/kizmo04/Desktop/fsociety.png'
 # params['image'] = 'https://igcdn-photos-c-a.akamaihd.net/hphotos-ak-xpt1/t51.2885-15/11142158_1389784811347226_911801625_n.jpg'
 cool = Message(api_key, api_secret)
 
