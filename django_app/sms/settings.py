@@ -18,7 +18,7 @@ from pathlib import Path
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
-config_file_content = Path(__file__).parents[2].joinpath('.conf', 'settings_local.json')
+config_file_content = Path(__file__).parents[2].joinpath('.conf', 'settings_local.json').open().read()
 config = json.loads(config_file_content)
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')

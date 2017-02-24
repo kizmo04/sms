@@ -10,29 +10,13 @@ def index(request):
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
-            config = get_config()
-            api_key = config['sms']['api_key']
-            api_secret = config['sms']['api_secret']
 
             numbers = form.cleaned_data['recipient_numbers']
-            text = form.cleaned_data['text']
+            text = form.cleaned_data['content']
 
-            params = get_params(numbers, text)
+            for number in numbers:
+                send_sms(number, text)
 
-            cool = Message(api_key, api_secret)
-
-            try:
-                response = cool.send(params)
-                print("Success Count : %s" % response['success_count'])
-                print("Error Count : %s" % response['error_count'])
-                print("Group ID : %s" % response['group_id'])
-
-                if "error_list" in response:
-                    print("Error List : %s" % response['error_list'])
-
-            except CoolsmsException as e:
-                print("Error Code : %s" % e.code)
-                print("Error Message : %s" % e.msg)
     else:
         form = MessageForm()
     context = {
@@ -49,3 +33,25 @@ def get_params(to_number, text):
     params['from'] = config['sms']['sender_number']
     params['text'] = text
     return params
+
+
+def send_sms(number, text):
+    config = get_config()
+    api_key = config['sms']['api_key']
+    api_secret = config['sms']['api_secret']
+    params = get_params(number, text)
+
+    cool = Message(api_key, api_secret)
+
+    try:
+        response = cool.send(params)
+        print("Success Count : %s" % response['success_count'])
+        print("Error Count : %s" % response['error_count'])
+        print("Group ID : %s" % response['group_id'])
+
+        if "error_list" in response:
+            print("Error List : %s" % response['error_list'])
+
+    except CoolsmsException as e:
+        print("Error Code : %s" % e.code)
+        print("Error Message : %s" % e.msg)
