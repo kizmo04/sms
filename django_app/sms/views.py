@@ -14,10 +14,10 @@ def index(request):
             api_key = config['sms']['api_key']
             api_secret = config['sms']['api_secret']
 
-            to_number = form.cleaned_data['to_number']
+            numbers = form.cleaned_data['recipient_numbers']
             text = form.cleaned_data['text']
 
-            params = get_params(to_number, text)
+            params = get_params(numbers, text)
 
             cool = Message(api_key, api_secret)
 
