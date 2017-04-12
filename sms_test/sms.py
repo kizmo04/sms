@@ -15,7 +15,7 @@ api_secret = config['sms']['api_secret']
 
 params = dict()
 params['type'] = 'mms'
-params['to'] = '01091410609'
+params['to'] = '01067675319'
 params['from'] = config['sms']['sender_number']
 params['text'] = 'hello'
 params['image'] = '/Users/kizmo04/Desktop/fsociety.png'
